@@ -1,68 +1,67 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Frontend do projeto YourRecipes
 
-## Available Scripts
+## Projeto FullStack para armazenar e mostrar suas receitas preferidas :)
 
-In the project directory, you can run:
+![NPM](https://img.shields.io/npm/l/express)
 
-### `yarn start`
+<p align="center">
+ <a href="#objetivo">Objetivo</a> •
+ <a href="#tecnologias">Tecnologias</a> • 
+ <a href="#instalacao">Instalação</a> • 
+ <a href="#status">Status</a> • 
+ <a href="#autor">Autor</a>
+</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2 id="objetivo">:dart: Objetivo</h2>
+O objetivo do projeto é auxiliar pessoas a guardarem com facilidade suas receitas. Eu particularmente gosto bastante de cozinhar, então este projeto serve para resolver o meu problema e me dar mais experiência com a stack MERN. Este projeto está dividido em Backend e Frontend, sendo o backend em outro repositório a fim de separar os conceitos e facilitar integração da APi em outros sistemas. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<h2 id="tecnologias">:wrench: Tecnologias</h2>
 
-### `yarn test`
+As seguintes tecnologias foram utilizadas no projeto deste repositório:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [React](https://reactjs.org/)
+- [Styled Components](https://styled-components.com/z)
+- [Axios](https://github.com/axios/axios)
 
-### `yarn build`
+<h2 id="instalacao">:computer: Instalação</h2>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Pré-requisitos
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Antes de começar, você vai precisar ter o [Git](https://git-scm.com) e o [NPM](https://www.npmjs.com/) instalados em sua máquina.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Este projeto está dividido em dois repositórios, cada parte possui um guia com sua respectiva instalação.
 
-### `yarn eject`
+### Rodando o frontend
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+# Clone este repositório
+$ git clone https://github.com/Gabriel-Cervo/YourRecipes-Frontend-React
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Acesse a pasta do projeto no terminal/cmd
+$ cd YourRecipes-Frontend-React
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Instale as dependências
+$ npm install
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Execute a aplicação
+$ npm start
 
-## Learn More
+# O servidor inciará na porta:3000 por padrão - acesse: http://localhost:3000.
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<h2 id="status">Status: Em produção </h2>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<h2 id="autor">Autor</h2>
+<br />
+<a href="https://github.com/Gabriel-Cervo">
+ <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C5603AQGiGb8ejwFmCg/profile-displayphoto-shrink_400_400/0?e=1602115200&v=beta&t=76A2c7dwyHM5GpxDX3N9-dN9TQdD6Ae0BkdpGvFTyMU" width="100px;" alt="Joao Gabriel Dourado Cervo"/>
+ <br />
+ <sub><b>Feito com ❤️ por Gabriel Cervo</b></sub></a>
 
-### Code Splitting
+<br />
+<br />
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+👋🏽 Entre em contato comigo:
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[![Linkedin Badge](https://img.shields.io/badge/Gabriel--Cervo-Linkedin-blue?link=https://www.linkedin.com/in/joaogabrielcervo/?style=flat-square&logo=Linkedin)](https://www.linkedin.com/in/joaogabrielcervo)
+[![Gmail Badge](https://img.shields.io/badge/Gabriel--Cervo-Email-red?link=mailto:joaogabrieldouradocervo@gmail.com/?style=flat-square&logo=Gmail&logoColor=white)](mailto:joaogabrieldouradocervo@gmail.com)
