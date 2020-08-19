@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Container from '../../assets/styles/Container';
 import Input from '../../components/Input';
-import { Main, RightSide, Title, Subtitle } from './styles.js';
+import { Main, Form, Title, Subtitle } from './styles.js';
 import Button from '../../assets/styles/Button';
 
 export default function Login() {
@@ -14,12 +15,16 @@ export default function Login() {
         setInputValue(state => ( {...state, [name]: value } ));
     }
 
+    function handleSubmit() {
+        console.log('enviado');
+    }
+
     return (
         <Container>
             <Main>
-                <RightSide>
-                    <Title>Seja bem vindo!</Title>
-                    <Subtitle>Para continuar, faça logon abaixo: </Subtitle>
+                <Form onSubmit={handleSubmit}>
+                    <Title>Bem vindo de volta!</Title>
+                    <Subtitle>Para efetuar login, digite suas informações abaixo: </Subtitle>
                     <Input 
                         name="email" 
                         label="Digite seu email:" 
@@ -34,8 +39,9 @@ export default function Login() {
                         value={inputValue.password} 
                         onChange={updateValue} 
                     />
-                    <Button>Entrar</Button>
-                </RightSide>
+                    <Button type="submit">Efetuar Login</Button>
+                    <span>Não possui conta? <Link to="/register">Ir para o cadastro</Link></span>
+                </Form>
             </Main>
         </Container>
     );

@@ -9,7 +9,7 @@ export const Main = styled.main`
     border-radius: .5rem;
 `;
 
-export const RightSide = styled.div`
+export const Form = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +17,32 @@ export const RightSide = styled.div`
 
     button {
         width: 100%;
+        max-width: 34rem;
         margin-top: 2.5rem;
+        cursor: pointer;
+        transition: opacity .2s linear;
+
+        &:hover {
+            opacity: 0.8;
+
+        }
+    }
+
+    span {
+        font: 400 1.4rem Poppins;
+        color: #606060;
+        padding-top: 1rem;
+        align-self: flex-end;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color .2s ease;
+
+            &:hover {
+                color: #c3aed6;
+            }
+        }
     }
 `;
 
