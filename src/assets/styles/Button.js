@@ -10,6 +10,15 @@ const Button = styled.button`
     color: #ffffff;
     font: 400 1.4rem Poppins;
     border-radius: .4rem;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
 `;
 
 export default Button;
