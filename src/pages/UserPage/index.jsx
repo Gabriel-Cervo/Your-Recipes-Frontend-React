@@ -2,7 +2,7 @@ import React from 'react';
 
 import Container from '../../assets/styles/Container';
 
-import { Main, Menu, ImageContainer, Bold, MenuButton, Divider, RecipesContainer, Footer } from './styles';
+import { Main, Menu, Bold, MenuButton, Divider, RecipesContainer, Footer , Image} from './styles';
 
 import Recipe from '../../components/Recipe';
 
@@ -13,9 +13,7 @@ export default function UserPage() {
         <Container>
             <Main>
                 <Menu>
-                    <ImageContainer>
-                        <img src="./svg/polaroid.svg" alt="Menu illustration"/>
-                    </ImageContainer>
+                    <Image src="./svg/polaroid.svg" alt="Menu illustration" />
                     <h1>Seja bem vindo/a, <Bold>{username}</Bold>! </h1>
                     <h5>Total de receitas salvas: <Bold>10</Bold></h5>
                     <Divider />

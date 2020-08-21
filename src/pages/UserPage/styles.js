@@ -7,8 +7,12 @@ export const Main = styled.main`
     align-items: center;
     justify-content: center;
     background: #f0f0f0;
-    padding: 5rem 2rem;
+    padding: 2rem 0rem;
     border-radius: .5rem;
+    
+    @media (min-width: 1024px) {
+        margin-top: 5rem;
+    }
 `;
 
 export const Menu = styled.div`
@@ -41,24 +45,6 @@ export const Menu = styled.div`
         li {
             font: 400 1.4rem Poppins;    
             padding-top: 1rem;    
-        }
-    }
-`;
-
-export const ImageContainer = styled.div`
-    display: block;
-    padding-bottom: 20px;
-    
-    img {
-        width: 100%;
-        max-width: 250px;
-    }
-
-    @media (min-width: 1024px) { 
-        img { 
-            width: 30rem;
-            max-width: 500px;
-            padding-bottom: 5rem;
         }
     }
 `;
@@ -99,5 +85,21 @@ export const Footer = styled.footer`
     
     p {
         color: #f0f0f0;
+    }
+`;
+
+export const Image = styled.div`
+    width: 16rem;
+    height: 16rem;
+    border-radius: .4rem;
+    background-image: url(${props => props.src});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    margin-bottom: 2rem;
+
+    @media (min-width: 1024px) {
+        width: 18rem;
+        height: 18rem;
     }
 `;
