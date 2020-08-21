@@ -40,10 +40,6 @@ export const ImageContainer = styled.div`
             max-width: 500px;
             padding-bottom: 5rem;
         }
-
-        .cookImg {
-            width: 23.5rem;
-        }
     }
 `;
 
@@ -133,16 +129,42 @@ export const ApiError = styled.div`
     border-radius: .5rem;
     font: 400 1.2rem Poppins;
     color: #fff;
-    animation: disappear 5s;
+    animation: disappear 7s;
     width: 20rem;
     text-align: center;
 
-    p {
-        padding: 1rem 5rem;
+    .content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+
+        p {
+            padding-top: .2rem;
+            padding-left: .5rem;
+        }
+
+        img {
+            width: 2rem;
+            height: 2rem;
+        }
     }
 
     @media (min-width: 1024px) {
         font-size: 1.4rem;
+        width: 25rem;
+
+        .content {
+            p {
+                padding-left: 1rem;
+            }
+            
+            img {
+                width: 2.5rem;
+                height: 2.3rem;
+            }
+        }
     }
 
     
@@ -161,7 +183,7 @@ export const TimerProgress = styled.div`
     height: 2px;
     width: 0%;
     background: #41444b;
-    animation: move 5s;
+    animation: move 7s;
 
     @keyframes move {
         25% {

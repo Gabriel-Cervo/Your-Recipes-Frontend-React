@@ -10,6 +10,8 @@ const Button = styled.button`
     color: #ffffff;
     font: 400 1.4rem Poppins;
     border-radius: .4rem;
+    cursor: pointer;
+    transition: opacity .1s;
 
     &:hover {
         opacity: 0.8;
