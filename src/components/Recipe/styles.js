@@ -9,27 +9,53 @@ export const  Wrapper = styled.div`
     background: #fff;
     color: #606060;
     border-radius: .4rem;
-    margin-top: 2rem;
-    padding: 1.6rem 1rem;
+    margin-top: 3.5rem;
+    padding: 1.5rem 1.2rem;
+
+    &:first-child {
+        margin-top: 0;
+    }
 
     &:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
+
+    @media (min-width: 1100px) {    
+        max-width: 25rem;
+        margin-left: 2rem;
+        padding: 1rem;
+
+        &:first-child {
+            margin-top: 3.5rem;
+        }
+    }
 `;
 
 export const Image = styled.div`
-    width: 15rem;
-    height: 15rem;
+    width: 19rem;
+    height: 19rem;
     border-radius: .4rem;
     background-image: url(${props => props.src});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
     margin-bottom: 1rem;
+    border: 1px solid #8675a9;
+    transition: width .3s, height .3s;
 
-    @media (min-width: 1024px) {
-        width: 18rem;
-        height: 18rem;
+    &:hover {
+            width: 21rem;
+            height: 21rem;
+        }
+
+    @media (min-width: 1100px) {
+        width: 15rem;
+        height: 15rem;
+        
+        &:hover {
+            width: 17rem;
+            height: 17rem;
+        }
     }
 `;
 
@@ -57,10 +83,11 @@ export const Footer = styled.footer`
 `;
 
 export const IconsWrapper = styled.div`
-    padding-left: 7rem;
+    padding: 0 2rem;
     
     button {
-        padding: .6rem;
+        padding: .8rem 1rem;
+        margin-top: .3rem;
         width: .5rem;
         border: 0;
         outline: 0;

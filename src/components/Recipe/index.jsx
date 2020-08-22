@@ -15,6 +15,7 @@ export default function Recipe(props) {
             <Content>
                     <h1>{props.name}</h1>
                     <p>Postado em: {props.createdAt}</p>
+                    <p>Última atualização: {props.createdAt}</p>
                     <Footer>
                         <Details><button><Link to={`recipe/${props.id}`}>Ver Detalhes</Link></button></Details>
                         <IconsWrapper>

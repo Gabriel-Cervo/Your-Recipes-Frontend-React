@@ -9,7 +9,7 @@ import Button from '../../assets/styles/Button';
 import api from '../../services/api';
 
 export default function Login() {
-    const [inputValue, setInputValue] = useState({ email: '', password: ''});
+    const [inputValue, setInputValue] = useState({ email: '', password: '', submited: false });
     const [showWarning, setShowWarning] = useState({ email: false, password: false });
     const [apiError, setApiError] = useState({ status: false, message: '' });
     const [redirectUser, setRedirectUser] = useState(false);
@@ -28,6 +28,7 @@ export default function Login() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setInputValue(state => ({ ...state, submited: true }));
 
         api.post('/users/login', {
             email: inputValue.email,
@@ -41,7 +42,14 @@ export default function Login() {
 
             setRedirectUser(true);
         })
-        .catch(err => setApiError({ status: true, message: err.response.data.message }));
+        .catch(err => {
+            if (err.response === undefined) {
+                setApiError({ status: true, message: 'Oops! Algo deu errado! Verifique sua conexão e tente novamente' });
+            } else {
+                setApiError({ status: true, message: err.response.data.message })
+            }
+            setInputValue(state => ({ email: '', password: '', submited: false }));
+        });
     }
 
     useEffect(() => {
@@ -93,7 +101,7 @@ export default function Login() {
                         {showWarning.password && <EmptyFieldWarning>Você precisa preencher sua senha!</EmptyFieldWarning>}
                         <Button 
                             type="submit" 
-                            disabled={inputValue.email === '' || inputValue.password === ''}
+                            disabled={inputValue.email === '' || inputValue.password === '' || inputValue.submited}
                         >Efetuar Login</Button>
                         <span>Não possui conta? <Link to="/register">Ir para o cadastro</Link></span>
                     </Form>

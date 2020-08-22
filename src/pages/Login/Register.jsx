@@ -9,7 +9,7 @@ import Button from '../../assets/styles/Button';
 import api from '../../services/api';
 
 export default function Login() {
-    const [inputValue, setInputValue] = useState({ name: '', email: '', password: '' });
+    const [inputValue, setInputValue] = useState({ name: '', email: '', password: '', submited: false });
     const [showWarning, setShowWarning] = useState({ name: false, email: false, password: false });
     const [apiError, setApiError] = useState({ status: false, message: '' });
     const [redirectUser, setRedirectUser] = useState(false);
@@ -28,7 +28,8 @@ export default function Login() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
+        setInputValue(state => ({ ...state, submited: true }));
+        
         api.post('/users/register', {
             name: inputValue.name,
             email: inputValue.email,
@@ -42,7 +43,14 @@ export default function Login() {
 
             setRedirectUser(true);
         })
-        .catch(err => setApiError({ status: true, message: err.response.data.message }));
+        .catch(err => {
+            if (err.response === undefined) {
+                setApiError({ status: true, message: 'Oops! Algo deu errado! Verifique sua conexão e tente novamente' });
+            } else {
+                setApiError({ status: true, message: err.response.data.message })
+            }
+            setInputValue(state => ({ name: '', email: '', password: '', submited: false }));
+        });
     }
 
     useEffect(() => {
@@ -104,7 +112,7 @@ export default function Login() {
 
                         <Button 
                             type="submit" 
-                            disabled={inputValue.email === '' || inputValue.password === '' || inputValue.name === ''}
+                            disabled={inputValue.email === '' || inputValue.password === '' || inputValue.name === '' || inputValue.submited}
                         >Criar conta</Button>
                         <span>Já possui conta? <Link to="/login">Ir para o login</Link></span>
                     </Form>
