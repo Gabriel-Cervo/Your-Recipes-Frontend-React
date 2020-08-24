@@ -98,6 +98,10 @@ export const RecipesContainer = styled.div`
         flex-wrap: wrap;
         margin-top: 0;
     }
+
+    p {
+        padding-top: 5rem;
+    }
 `;
 
 export const Image = styled.div`

@@ -12,15 +12,62 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
 
 import convertTimestampToDate from '../../utils/convertTimestampToDate';
 
+import api from '../../services/api';
+
 export default function UserPage() {
     const [redirectUser, setRedirectUser] = useState(false);
-    const username = localStorage.getItem('username');
+    const [recipes, setRecipes] = useState([{}]);
+    const [numberOfRecipes, setNumberOfRecipes] = useState('')
+    const [loading, setLoading] = useState(true);
+    const [pages, setPages] = useState({ actual: 1 });
 
+    const username = localStorage.getItem('username');
+    const jwt = localStorage.getItem('jwt');
     
     function logoutUser() {
         localStorage.clear();
         setRedirectUser(true);
     }   
+
+    function updatePage(value) {
+        setPages(state => ({ ...state, actual: state.actual + value }));
+    }
+
+    async function deletePost(id) {
+        try {
+            await api.delete(`/recipes/${id}`, {
+                headers: { 'Authorization': `Bearer ${jwt}` }
+            });
+            setRecipes(state => state.filter(item => item._id !== id));
+            setNumberOfRecipes(state => state - 1);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
+            try {
+                const res = await api.get('/recipes', {
+                    params: {
+                        page: pages.actual,
+                        limit: 4
+                    },
+                    headers: { 'Authorization': `Bearer ${jwt}` },
+                });
+
+                setRecipes(res.data.recipes);
+                setNumberOfRecipes(state => state === '' ? res.data.total : state);
+                setPages(state => ({ ...state, hasPrevious: res.data.previous !== undefined, hasNext: res.data.next !== undefined }));
+                setLoading(false);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        fetchData();
+    }, [pages.actual, jwt]);
 
     return (
         <Container>
@@ -29,7 +76,7 @@ export default function UserPage() {
                 <Menu>
                     <Image src="./svg/polaroid.svg" alt="Menu illustration" />
                     <h1>Seja bem vindo/a, <Bold>{username}</Bold>! </h1>
-                    <h5>Total de receitas salvas: <Bold>10</Bold></h5>
+                    <h5>Total de receitas salvas: <Bold>{numberOfRecipes}</Bold></h5>
                     <Divider />
                     <p>Menu: </p>
                     <ul>
@@ -39,35 +86,22 @@ export default function UserPage() {
                 </Menu>
                 <Title>Suas receitas: </Title>
                 <RecipesContainer>
-                    <Recipe 
-                        img="https://upload-imagens.s3.amazonaws.com/1d993ecfa0b03780ed42c9a5986dc811-56052678.jpg"
-                        name="gamba"
-                        id="5f398d3cd4fdc5231037f260"
-                        createdAt={convertTimestampToDate("2020-08-16T19:47:08.508Z")}
-                    />
-                    <Recipe 
-                        img="https://upload-imagens.s3.amazonaws.com/1d993ecfa0b03780ed42c9a5986dc811-56052678.jpg"
-                        name="gamba"
-                        id="5f398d3cd4fdc5231037f260"
-                        createdAt={convertTimestampToDate("2020-08-16T19:47:08.508Z")}
-                    />
-                     <Recipe 
-                        img="https://upload-imagens.s3.amazonaws.com/1d993ecfa0b03780ed42c9a5986dc811-56052678.jpg"
-                        name="gamba"
-                        id="5f398d3cd4fdc5231037f260"
-                        createdAt={convertTimestampToDate("2020-08-16T19:47:08.508Z")}
-                    />
-                     <Recipe 
-                        img="https://upload-imagens.s3.amazonaws.com/1d993ecfa0b03780ed42c9a5986dc811-56052678.jpg"
-                        name="gamba"
-                        id="5f398d3cd4fdc5231037f260"
-                        createdAt={convertTimestampToDate("2020-08-16T19:47:08.508Z")}
-                    />
+                {loading ? <p>Carregando...</p> : (recipes.map(item => 
+                <Recipe 
+                    key={item._id}
+                    img={item.img}
+                    name={item.name}
+                    id={item._id}
+                    createdAt={convertTimestampToDate(item.createdAt)}
+                    updatedAt={convertTimestampToDate(item.updatedAt)}
+                    onDelete={deletePost}
+                />
+                ))}
                 </RecipesContainer>
                 <PaginationButtons>
                     <IconContext.Provider value={{ className: 'icons' }}>
-                        <MenuButton><FaArrowAltCircleLeft /></MenuButton>
-                        <MenuButton><FaArrowAltCircleRight /></MenuButton>
+                        <MenuButton disabled={!pages.hasPrevious} onClick={() => updatePage(-1)}><FaArrowAltCircleLeft /></MenuButton>
+                        <MenuButton disabled={!pages.hasNext}  onClick={() => updatePage(+1)}><FaArrowAltCircleRight /></MenuButton>
                     </IconContext.Provider>
                 </PaginationButtons>
             </Main>

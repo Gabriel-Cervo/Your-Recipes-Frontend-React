@@ -15,12 +15,12 @@ export default function Recipe(props) {
             <Content>
                     <h1>{props.name}</h1>
                     <p>Postado em: {props.createdAt}</p>
-                    <p>Última atualização: {props.createdAt}</p>
+                    <p>Última atualização: {props.updatedAt}</p>
                     <Footer>
                         <Details><button><Link to={`recipe/${props.id}`}>Ver Detalhes</Link></button></Details>
                         <IconsWrapper>
                             <button><FaEdit /></button>
-                            <button><FaTrash /></button>
+                            <button onClick={() => props.onDelete(props.id)}><FaTrash /></button>
                         </IconsWrapper>
                     </Footer>
             </Content>
