@@ -195,3 +195,65 @@ export const TimerProgress = styled.div`
         }
     }
 `;
+
+export const Steps = styled.ul`    
+    p {
+        font: 1.4rem Poppins;
+    }
+
+    button {
+        min-width: 2rem !important;
+        width: 8%;
+        margin-left: 2rem;
+        border-radius: 10rem;
+        margin-top: .5rem;
+    }
+
+    .top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    li {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+
+        button {
+            align-self: flex-end;
+            margin-bottom: .8rem;
+        }
+    }
+
+    li + li {
+        margin-top: 1rem;
+    }
+
+    @media (max-width: 1024px) {
+        p {
+            width: 85%;
+        }
+
+        .top {
+            align-items: flex-start
+        }
+
+        li {
+            margin: 0 auto;
+            width: 85%;
+
+            button {
+                margin-left: 1rem;
+                margin-bottom: .8rem;
+            }
+        }
+
+        button {
+            margin: .5rem 0;
+            padding: .9rem;
+            min-width: 1rem;
+            width: 10%;
+        }
+    }
+`;

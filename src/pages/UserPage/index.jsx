@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import Container from '../../assets/styles/Container';
 
@@ -19,6 +19,7 @@ export default function UserPage() {
     const [recipes, setRecipes] = useState([{}]);
     const [numberOfRecipes, setNumberOfRecipes] = useState('')
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     const [pages, setPages] = useState({ actual: 1 });
 
     const username = localStorage.getItem('username');
@@ -62,6 +63,8 @@ export default function UserPage() {
                 setPages(state => ({ ...state, hasPrevious: res.data.previous !== undefined, hasNext: res.data.next !== undefined }));
                 setLoading(false);
             } catch (err) {
+                setLoading(false);
+                setError(true);
                 console.log(err);
             }
         }
@@ -80,13 +83,13 @@ export default function UserPage() {
                     <Divider />
                     <p>Menu: </p>
                     <ul>
-                        <li><MenuButton onClick={() => console.log('Clickado')}>Cadastrar nova receita</MenuButton></li>
+                        <li><Link to="/newRecipe"><MenuButton>Cadastrar nova receita</MenuButton></Link></li>
                         <li><MenuButton onClick={() => logoutUser()}>Fazer logout</MenuButton></li>
                     </ul>
                 </Menu>
                 <Title>Suas receitas: </Title>
                 <RecipesContainer>
-                {loading ? <p>Carregando...</p> : (recipes.map(item => 
+                {loading ? <p>Carregando...</p> : error ? <p>Algo deu errado, verifique sua conexão e tente novamente.</p> : (recipes.map(item => 
                 <Recipe 
                     key={item._id}
                     img={item.img}

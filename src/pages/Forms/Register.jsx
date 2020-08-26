@@ -8,7 +8,7 @@ import Button from '../../assets/styles/Button';
 
 import api from '../../services/api';
 
-export default function Login() {
+export default function Register() {
     const [inputValue, setInputValue] = useState({ name: '', email: '', password: '', submited: false });
     const [showWarning, setShowWarning] = useState({ name: false, email: false, password: false });
     const [apiError, setApiError] = useState({ status: false, message: '' });
