@@ -26,7 +26,11 @@ const InputBlock = styled.div`
         &:focus {
             border: 1px solid #c3aed6;
         }
+    }
 
+    input[type="file"] {
+        background: transparent;
+        padding-top: 1.5rem;
     }
 `;
 

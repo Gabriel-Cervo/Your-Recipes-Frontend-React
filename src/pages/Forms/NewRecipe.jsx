@@ -5,7 +5,7 @@ import Container from '../../assets/styles/Container';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 
-import { Main, ImageContainer, Form, TitleContainer, Title, Subtitle, EmptyFieldWarning, ApiError, TimerProgress, Steps } from './styles.js';
+import { Main, Image, Form, TitleContainer, Title, Subtitle, EmptyFieldWarning, ApiError, TimerProgress, Steps, Preview, ImageUpload } from './styles.js';
 
 import Button from '../../assets/styles/Button';
 
@@ -13,6 +13,7 @@ import api from '../../services/api';
 
 export default function Login() {
     const [inputValue, setInputValue] = useState({ name: '', description: '', submited: false });
+    const [image, setImage] = useState({ url: './icons/recipe_default.jpg', file: '' });
     const [steps, setSteps] = useState(['']);
     const [showWarning, setShowWarning] = useState({ name: false, description: false });
     const [apiError, setApiError] = useState({ status: false, message: '' });
@@ -44,10 +45,19 @@ export default function Login() {
         setSteps(state => state.filter((item, index) => index !== posicao));
     }
 
-    function handleSubmit(e) {
+    function updateImage(e) {
         e.preventDefault();
-        setInputValue(state => ({ ...state, submited: true }));
-        
+
+        const reader = new FileReader();
+        const file = e.target.files[0];
+
+        reader.onloadend = () => { 
+            setImage({ url: reader.result, file });
+        }
+
+        reader.readAsDataURL(file);
+
+        console.log(image);
     }
 
     useEffect(() => {
@@ -55,6 +65,33 @@ export default function Login() {
             setTimeout(() => setApiError({ status: false, message: '' }), 5000);
         }
     }, [apiError.status]);
+
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setInputValue(state => ({ ...state, submited: true }));   
+
+        const { name, description } = inputValue;
+        
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('description', description);
+        formData.append('steps', steps);
+        formData.append('file', image.file);
+
+        try {
+            await api.post('/recipes', formData, {
+                headers: { 
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`, 
+                    'Content-Type': 'multipart/form-data' 
+                }
+            });
+            setRedirectUser(true);
+        } catch (err) {
+            setApiError({ status: true, message: err.message });
+        }
+    }
+
 
     return (
         <>
@@ -71,9 +108,7 @@ export default function Login() {
 
             <Container>
                 <Main>
-                    <ImageContainer>
-                        <img src="./svg/cooking.svg" alt="Personal Info"/>
-                    </ImageContainer>
+                    <Image src="./svg/cooking.svg" alt="Cooking illustration" />
                     <TitleContainer>
                         <Title>Que bom que você quer cozinhar!</Title>
                         <Subtitle>Para salvar a receita, preencha o formulário abaixo: </Subtitle>
@@ -96,22 +131,34 @@ export default function Login() {
                             showWarning={showWarning.description}
                         />
                         {showWarning.description && <EmptyFieldWarning>Qual é? Não tem nada para falar sobre a receita?</EmptyFieldWarning>}
+                        <ImageUpload>
+                            <div style={{ textAlign: 'center' }}>
+                                <p>Preview</p>
+                                <Preview src={image.url} alt="Recipe Preview" />
+                            </div>
+                            <Input 
+                                name="file" 
+                                label="Foto:" 
+                                type="file" 
+                                onChange={(e) => updateImage(e)}
+                            />
+                        </ImageUpload>
                         <Steps>
                             <div className="top">
                                 <p>Digite aqui o passo a passo para realizar a receita</p>
-                                <Button onClick={addStep}>+</Button>
+                                <Button type="button" onClick={addStep}>+</Button>
                             </div>
                             {steps.map((item, index) => <li key={index}><Input 
                                 label={`Passo ${index + 1}`}
                                 name="step"
                                 value={item}
                                 onChange={(e) => updateStepValue(e, index)}
-                            /><Button onClick={() => deleteStep(index)} disabled={index === 0}>-</Button></li>)}
+                            /><Button type="button" onClick={() => deleteStep(index)} disabled={index === 0}>-</Button></li>)}
                         </Steps>
 
                         <Button 
                             type="submit" 
-                            disabled={inputValue.name === '' || inputValue.description === '' || steps === null || inputValue.submited}
+                            disabled={inputValue.name === '' || inputValue.description === '' || steps[steps.length - 1] === '' || inputValue.submited}
                         >Cadastrar nova receita</Button>
                     </Form>
                 </Main>

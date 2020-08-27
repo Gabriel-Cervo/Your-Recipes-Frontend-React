@@ -202,10 +202,11 @@ export const Steps = styled.ul`
     }
 
     button {
-        min-width: 2rem !important;
-        width: 8%;
+        min-width: 1rem;
+        width: 7%;
+        padding: .5rem;
         margin-left: 2rem;
-        border-radius: 10rem;
+        border-radius: 2rem;
         margin-top: .5rem;
     }
 
@@ -255,5 +256,54 @@ export const Steps = styled.ul`
             min-width: 1rem;
             width: 10%;
         }
+    }
+`;
+
+export const Image = styled.div`
+    width: 19rem;
+    height: 19rem;
+    background-image: url(${props => props.src});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    margin-bottom: 2rem;
+
+    @media (min-width: 1100px) {
+        width: 28rem;
+        height: 28rem;
+        margin-bottom: 8rem;
+    }
+`;
+
+export const ImageUpload = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+
+    p {
+        margin-bottom: .5rem;
+    }
+
+    @media (min-width: 1024px) {
+        flex-direction: row;
+        margin-top: 1rem;
+
+        p {
+            margin-top: 2rem;
+        }
+    }
+`;
+
+export const Preview = styled(Image)`
+    width: 12rem;
+    height: 12rem;
+    border-radius: 5rem;
+
+    @media (min-width: 1024px) {
+       width: 8rem;
+       height: 8rem;
+       margin: 2rem;
+       margin-top: 1rem;
     }
 `;
