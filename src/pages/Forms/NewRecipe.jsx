@@ -124,7 +124,7 @@ export default function Login() {
                         />
                         {showWarning.name && <EmptyFieldWarning>A receita precisa ter um nome!</EmptyFieldWarning>}
                         <Textarea 
-                            label="Descrição da receita"
+                            label="Descrição da receita, ingredientes, etc..."
                             name="description"
                             value={inputValue.description}
                             onChange={updateValue}

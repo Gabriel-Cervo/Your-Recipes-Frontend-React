@@ -27,7 +27,7 @@ As seguintes tecnologias foram utilizadas no projeto deste repositório:
 
 ### Pré-requisitos
 
-Antes de começar, você vai precisar ter o [Git](https://git-scm.com) e o [NPM](https://www.npmjs.com/) instalados em sua máquina.
+Antes de começar, você vai precisar ter o [Git](https://git-scm.com) e o [NPM](https://www.npmjs.com/) instalados em sua máquina, assim como o [Backend](https://github.com/Gabriel-Cervo/YourRecipes-Backend-Api) rodando.
 
 Este projeto está dividido em dois repositórios, cada parte possui um guia com sua respectiva instalação.
 
