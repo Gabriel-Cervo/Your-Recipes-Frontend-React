@@ -43,6 +43,10 @@ $ cd YourRecipes-Frontend-React
 # Instale as dependências
 $ npm install
 
+# Aviso! Antes da execução, é necessário em que haja um arquivo .env contendo as informações da api.
+# Como abaixo:
+# REACT_APP_API_URL=<URL_DA_API>
+
 # Execute a aplicação
 $ npm start
 
