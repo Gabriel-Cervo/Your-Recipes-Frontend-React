@@ -170,6 +170,6 @@ export const PaginationButtons = styled.div`
     }
 
     @media (min-width: 1240px) {
-        margin-top: -5rem;
+        margin-top: -8rem;
     }
 `;
