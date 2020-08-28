@@ -167,6 +167,9 @@ export const PaginationButtons = styled.div`
         button {
             max-width: 5rem;
         }
-        
+    }
+
+    @media (min-width: 1240px) {
+        margin-top: -5rem;
     }
 `;
