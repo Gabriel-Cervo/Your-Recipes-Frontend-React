@@ -53,7 +53,7 @@ $ npm start
 # O servidor inciará na porta:3000 por padrão - acesse: http://localhost:3000.
 ```
 
-<h2 id="status">Status: Em produção </h2>
+<h2 id="status">Status: Concluído :heavy_check_mark:</h2>
 
 <h2 id="autor">Autor</h2>
 <br />
