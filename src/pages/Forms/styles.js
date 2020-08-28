@@ -298,7 +298,7 @@ export const ImageUpload = styled.div`
 export const Preview = styled(Image)`
     width: 12rem;
     height: 12rem;
-    border-radius: 5rem;
+    border-radius: 15rem;
 
     @media (min-width: 1024px) {
        width: 8rem;

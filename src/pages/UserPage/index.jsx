@@ -12,6 +12,8 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
 
 import convertTimestampToDate from '../../utils/convertTimestampToDate';
 
+import PolaroidLogo from '../../assets/svg/polaroid.svg';
+
 import api from '../../services/api';
 
 export default function UserPage() {
@@ -70,6 +72,11 @@ export default function UserPage() {
         }
 
         fetchData();
+
+        return () => {
+            setPages({ actual: 1 });
+        }
+
     }, [pages.actual, jwt]);
 
     return (
@@ -77,9 +84,9 @@ export default function UserPage() {
         {redirectUser && <Redirect to="/login" />}
             <Main>
                 <Menu>
-                    <Image src="./svg/polaroid.svg" alt="Menu illustration" />
+                    <Image src={PolaroidLogo} alt="Menu illustration" />
                     <h1>Seja bem vindo/a, <Bold>{username}</Bold>! </h1>
-                    <h5>Total de receitas salvas: <Bold>{numberOfRecipes}</Bold></h5>
+                    <h5>Total de receitas salvas: <Bold>{numberOfRecipes || 0}</Bold></h5>
                     <Divider />
                     <p>Menu: </p>
                     <ul>
@@ -96,7 +103,6 @@ export default function UserPage() {
                     name={item.name}
                     id={item._id}
                     createdAt={convertTimestampToDate(item.createdAt)}
-                    updatedAt={convertTimestampToDate(item.updatedAt)}
                     onDelete={deletePost}
                 />
                 ))}

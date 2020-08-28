@@ -6,6 +6,7 @@ import Login from './pages/Forms/Logon';
 import Register from './pages/Forms/Register';
 import RegisterRecipe from './pages/Forms/NewRecipe';
 import UserPage from './pages/UserPage';
+import RecipeDetails from './pages/RecipeDetails';
 import PageNotFound from './pages/PageNotFound';
 
 export default function Routes() {
@@ -14,6 +15,7 @@ export default function Routes() {
             <Switch>
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
+                <Route path="/recipe/:id" component={RecipeDetails} />
                 <ProtectedRoute exact path="/" component={UserPage} />
                 <ProtectedRoute path="/newRecipe" component={RegisterRecipe} />
                <Route component={PageNotFound} />

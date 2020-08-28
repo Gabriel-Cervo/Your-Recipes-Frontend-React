@@ -6,6 +6,8 @@ import Input from '../../components/Input';
 import { Main, ImageContainer, Form, TitleContainer, Title, Subtitle, EmptyFieldWarning, ApiError, TimerProgress } from './styles.js';
 import Button from '../../assets/styles/Button';
 
+import RegisterLogo from '../../assets/svg/personalInfo.svg';
+
 import api from '../../services/api';
 
 export default function Register() {
@@ -75,7 +77,7 @@ export default function Register() {
             <Container>
                 <Main>
                     <ImageContainer>
-                        <img src="./svg/personalInfo.svg" alt="Personal Info"/>
+                        <img src={RegisterLogo} alt="Personal Info"/>
                     </ImageContainer>
                     <TitleContainer>
                         <Title>Seja bem vindo!</Title>

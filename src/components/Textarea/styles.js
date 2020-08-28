@@ -21,6 +21,11 @@ export const TextareaBlock = styled.div`
         font: 1.6rem Archivo;
     }
 
+    @media (max-width: 1024px) {
+        padding-top: 1rem;
+        width: 75%;
+    }
+
     textarea:focus {
         border: 1px solid #c3aed6;
     }

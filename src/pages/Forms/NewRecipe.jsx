@@ -9,6 +9,8 @@ import { Main, Image, Form, TitleContainer, Title, Subtitle, EmptyFieldWarning, 
 
 import Button from '../../assets/styles/Button';
 
+import NewRecipeLogo from '../../assets/svg/cooking.svg';
+
 import api from '../../services/api';
 
 export default function Login() {
@@ -76,7 +78,7 @@ export default function Login() {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('description', description);
-        formData.append('steps', steps);
+        formData.append('steps', JSON.stringify(steps));
         formData.append('file', image.file);
 
         try {
@@ -108,7 +110,7 @@ export default function Login() {
 
             <Container>
                 <Main>
-                    <Image src="./svg/cooking.svg" alt="Cooking illustration" />
+                    <Image src={NewRecipeLogo} alt="Cooking illustration" />
                     <TitleContainer>
                         <Title>Que bom que você quer cozinhar!</Title>
                         <Subtitle>Para salvar a receita, preencha o formulário abaixo: </Subtitle>

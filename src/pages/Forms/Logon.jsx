@@ -6,6 +6,8 @@ import Input from '../../components/Input';
 import { Main, ImageContainer, Form, TitleContainer, Title, Subtitle, EmptyFieldWarning, ApiError, TimerProgress } from './styles.js';
 import Button from '../../assets/styles/Button';
 
+import LogonLogo from '../../assets/svg/hey.svg';
+
 import api from '../../services/api';
 
 export default function Login() {
@@ -74,7 +76,7 @@ export default function Login() {
             <Container>
                 <Main>
                     <ImageContainer>
-                        <img src="./svg/hey.svg" alt="login illustration" />
+                        <img src={LogonLogo} alt="login illustration" />
                     </ImageContainer>
                     <TitleContainer>
                         <Title>Bem vindo de volta!</Title>
